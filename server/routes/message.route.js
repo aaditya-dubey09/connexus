@@ -1,5 +1,5 @@
 import express from "express";
-import { isAuthenticated } from "../middlewares/auth.middlware.js";
+import { isAuthenticated } from "../middlewares/auth.middleware.js";
 import { getMessages, sendMessage, updateMessage, deleteMessage } from "../controllers/message.controller.js";
 
 const router = express.Router();

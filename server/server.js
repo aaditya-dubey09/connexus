@@ -23,8 +23,13 @@ import messageRoute from "./routes/message.route.js";
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/message", messageRoute);
 
-// middlwares
-import { errorMiddleware } from "./middlewares/error.middlware.js";
+// Health check route
+app.get('/api/health', (req, res) => {
+  res.status(200).send('OK');
+});
+
+// Middlewares
+import { errorMiddleware } from "./middlewares/error.middleware.js";
 app.use(errorMiddleware);
 
 server.listen(PORT, () => {
