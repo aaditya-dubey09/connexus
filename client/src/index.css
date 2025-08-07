@@ -1,0 +1,193 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Professional Animations */
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes bounceIn {
+    0% {
+        transform: scale(0.3);
+        opacity: 0;
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    70% {
+        transform: scale(0.9);
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Chat bubble animations */
+.chat-bubble-animate {
+    animation: fadeIn 0.3s ease-out;
+}
+
+.modal-animate {
+    animation: fadeIn 0.2s ease-out;
+}
+
+.slide-in-right {
+    animation: slideInRight 0.3s ease-out;
+}
+
+.slide-in-left {
+    animation: slideInLeft 0.3s ease-out;
+}
+
+.bounce-in {
+    animation: bounceIn 0.4s ease-out;
+}
+
+/* Mobile Optimization */
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Better scrolling on mobile */
+html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Custom scrollbar - Desktop/Tablet */
+@media screen and (min-width: 768px) {
+    ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0.1);
+        border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: rgba(0, 0, 0, 0.5);
+    }
+
+    /* Firefox scrollbar */
+    * {
+        scrollbar-width: thin;
+        scrollbar-color: rgba(0, 0, 0, 0.3) rgba(0, 0, 0, 0.1);
+    }
+}
+
+/* Custom scrollbar - Mobile (transparent) */
+@media screen and (max-width: 767px) {
+    ::-webkit-scrollbar {
+        width: 0px;
+        height: 0px;
+        background: transparent;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: transparent;
+    }
+
+    /* Firefox scrollbar - hidden on mobile */
+    * {
+        scrollbar-width: none;
+    }
+}
+
+/* Chat messages scrollbar - always transparent */
+.messages-container::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
+
+.messages-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.messages-container::-webkit-scrollbar-thumb {
+    background: transparent;
+}
+
+.messages-container {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+/* Touch optimization */
+.touch-manipulation {
+    touch-action: manipulation;
+}
+
+/* Hover effects */
+.hover-scale {
+    transition: transform 0.2s ease-in-out;
+}
+
+.hover-scale:hover {
+    transform: scale(1.02);
+}
+
+/* Smooth transitions */
+.smooth-transition {
+    transition: all 0.3s ease-in-out;
+}
+
+/* Prevent zoom on input focus on iOS */
+@media screen and (max-width: 767px) {
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    textarea,
+    select {
+        font-size: 16px;
+    }
+}
