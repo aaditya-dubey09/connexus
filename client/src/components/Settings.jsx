@@ -1,9 +1,20 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { IoClose, IoSettings, IoColorPalette, IoChatbubbleEllipses, IoImage, IoNotifications } from 'react-icons/io5';
 import { useTheme } from '../hooks/useTheme';
 
 const Settings = ({ isOpen, onClose }) => {
+    // Listen for browser back button/gesture
+    useEffect(() => {
+        if (!isOpen) return;
+        const handlePopState = () => {
+            onClose();
+        };
+        window.addEventListener('popstate', handlePopState);
+        return () => {
+            window.removeEventListener('popstate', handlePopState);
+        };
+    }, [isOpen, onClose]);
     const {
         appTheme,
         currentAppTheme,
@@ -29,10 +40,10 @@ const Settings = ({ isOpen, onClose }) => {
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 modal-animate">
-            <div className={`w-full max-w-4xl h-full md:max-h-[90vh] md:h-auto ${appTheme.sidebar} ${appTheme.text} md:rounded-lg shadow-xl bounce-in`}>
+            <div className={`w-full max-w-lg sm:max-w-xl md:max-w-3xl lg:max-w-4xl h-full md:max-h-[90vh] md:h-auto ${appTheme.sidebar} ${appTheme.text} md:rounded-lg shadow-xl bounce-in overflow-y-auto`}>
                 {/* Header */}
-                <div className={`flex items-center justify-between p-4 border-b ${appTheme.border}`}>
-                    <h2 className="text-xl font-semibold">Settings</h2>
+                <div className={`flex items-center justify-between px-3 py-2 md:p-4 border-b ${appTheme.border}`}>
+                    <h2 className="text-lg font-semibold md:text-xl">Settings</h2>
                     <button
                         onClick={onClose}
                         className={`p-2 rounded-lg ${appTheme.sidebarHover}`}
@@ -41,22 +52,22 @@ const Settings = ({ isOpen, onClose }) => {
                     </button>
                 </div>
 
-                <div className="flex h-[70vh]">
+                <div className="flex flex-col md:flex-row h-auto md:h-[70vh]">
                     {/* Sidebar */}
-                    <div className={`w-64 ${appTheme.border} border-r`}>
-                        <div className="p-4">
+                    <div className={`w-full md:w-56 lg:w-64 ${appTheme.border} border-r`}>
+                        <div className="p-2 md:p-4">
                             {tabs.map((tab) => {
                                 const Icon = tab.icon;
                                 return (
                                     <button
                                         key={tab.id}
                                         onClick={() => setActiveTab(tab.id)}
-                                        className={`w-full flex items-center gap-3 p-3 rounded-lg text-left transition-colors ${activeTab === tab.id
+                                        className={`w-full flex items-center gap-2 md:gap-3 px-2 py-2 md:p-3 rounded-lg text-left transition-colors text-base md:text-lg ${activeTab === tab.id
                                             ? 'bg-blue-600 text-white'
                                             : `${appTheme.sidebarHover} ${appTheme.text}`
                                             }`}
                                     >
-                                        <Icon size={20} />
+                                        <Icon size={18} className="md:size-5" />
                                         {tab.label}
                                     </button>
                                 );

@@ -27,7 +27,7 @@ export const register = asyncHandler(async (req, res, next) => {
     password: hashedPassword,
     gender,
     avatar,
-  }).populate('gender');
+  });
 
   const tokenData = {
     _id: newUser?._id,
