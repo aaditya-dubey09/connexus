@@ -79,6 +79,7 @@ export const userSlice = createSlice({
       state.isAuthenticated = true;
       state.screenLoading = false;
       state.userProfile = action.payload?.responseData;
+      console.log('User profile fetched:', action.payload);
     });
     builder.addCase(getUserProfileThunk.rejected, (state) => {
       state.screenLoading = false;
@@ -91,6 +92,7 @@ export const userSlice = createSlice({
     builder.addCase(getOtherUsersThunk.fulfilled, (state, action) => {
       state.screenLoading = false;
       state.otherUsers = action.payload?.responseData;
+      console.log('Other users fetched:', action.payload);
     });
     builder.addCase(getOtherUsersThunk.rejected, (state) => {
       state.screenLoading = false;

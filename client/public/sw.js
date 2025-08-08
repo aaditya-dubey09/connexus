@@ -20,7 +20,7 @@ self.addEventListener('install', (event) => {
 // Fetch event
 self.addEventListener('fetch', (event) => {
     // Don't cache API calls or external resources
-    if (event.request.url.includes('/api/') ||
+    if (event.request.url.includes('/api/v1') ||
         event.request.url.includes('localhost:5000') ||
         event.request.url.includes('socket.io') ||
         event.request.method !== 'GET') {
