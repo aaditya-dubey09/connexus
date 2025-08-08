@@ -6,9 +6,9 @@ const UserProfileViewer = ({ isOpen, onClose, userDetails }) => {
     const { appTheme } = useTheme();
 
     const defaultAvatars = [
-        "https://api.dicebear.com/9.x/avataaars/svg?seed=Nolan&radius=50&backgroundColor=65c9ff,b6e3f4,c0aede,d1d4f9,ffd5dc,ffdfbf&backgroundType=solid,gradientLinear",
-        'https://api.dicebear.com/9.x/avataaars/svg?seed=Ryan&radius=50&backgroundColor=65c9ff,b6e3f4,c0aede,d1d4f9,ffd5dc,ffdfbf&backgroundType=solid,gradientLinear',
-        'https://api.dicebear.com/9.x/avataaars/svg?seed=Katherine&radius=50&backgroundColor=65c9ff,b6e3f4,c0aede,d1d4f9,ffd5dc,ffdfbf&backgroundType=solid,gradientLinear'
+        'https://api.dicebear.com/9.x/avataaars/svg?seed=Nolan&radius=50&backgroundColor=65c9ff,b6e3f4,c0aede,d1d4f9,ffd5dc,ffdfbf&backgroundType=solid,gradientLinear',
+    'https://api.dicebear.com/9.x/avataaars/svg?seed=Ryan&radius=50&backgroundColor=65c9ff,b6e3f4,c0aede,d1d4f9,ffd5dc,ffdfbf&backgroundType=solid,gradientLinear',
+    'https://api.dicebear.com/9.x/avataaars/svg?seed=Katherine&radius=50&backgroundColor=65c9ff,b6e3f4,c0aede,d1d4f9,ffd5dc,ffdfbf&backgroundType=solid,gradientLinear'
     ];
 
     const getDefaultAvatar = (userId) => {
