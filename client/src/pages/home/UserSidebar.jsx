@@ -20,7 +20,7 @@ const UserSidebar = () => {
   const [activeFilter, setActiveFilter] = useState("all");
   const dispatch = useDispatch();
   const [users, setUsers] = useState([]);
-  const { otherUsers, userProfile } = useSelector((state) => state.userReducer);
+  const { otherUsers, userProfile, selectedUser } = useSelector((state) => state.userReducer);
   const { conversations } = useSelector((state) => state.messageReducer);
   const { onlineUsers } = useSelector((state) => state.socketReducer);
   const { appTheme } = useTheme();
@@ -135,13 +135,13 @@ const UserSidebar = () => {
           </h1>
           <div className="relative" ref={dropdownRef}>
             <div className="tooltip tooltip-bottom" data-tip="Open Menu">
-            <button
-              onClick={() => setShowDropdown(!showDropdown)}
+              <button
+                onClick={() => setShowDropdown(!showDropdown)}
                 className={`p-2 rounded-full ${appTheme.sidebarHover === 'default' ? 'bg-gray-900' : appTheme.sidebarHover} ${appTheme.text} touch-manipulation`}
               >
-              <IoEllipsisVertical size={20} />
-            </button>
-              </div>
+                <IoEllipsisVertical size={20} />
+              </button>
+            </div>
 
             {showDropdown && (
               <div className={`absolute right-0 top-12 w-48 ${appTheme.background} ${appTheme.border} border rounded-lg shadow-lg z-10 touch-manipulation hover:shadow-xl`}>
@@ -193,7 +193,7 @@ const UserSidebar = () => {
         <div className="p-3 md:p-3">
           <label className={`flex items-center gap-2 rounded-full shadow-md input h-12 md:h-auto focus-within:outline focus-within:outline-violet-700 outline-none border-0 py-1 hover:border hover:border-gray-900 ${appTheme.input}`}>
             <div className="tooltip tooltip-bottom" data-tip="Search">
-            <IoSearch className={`${appTheme.textSecondary} text-lg md:text-base`} />
+              <IoSearch className={`${appTheme.textSecondary} text-lg md:text-base`} />
             </div>
             <input
               onChange={(e) => setSearchValue(e.target.value)}
@@ -225,6 +225,7 @@ const UserSidebar = () => {
         <div ref={scrollRef} className="flex flex-col h-full px-3 overflow-y-auto">
           {users?.map((userDetails) => {
             const conversation = getUserConversation(userDetails._id);
+            // Only show green dot if there are unread messages and no user is selected or selected user is not this user
             return (
               <div key={userDetails?._id} className="relative">
                 <User
@@ -233,7 +234,7 @@ const UserSidebar = () => {
                   className={`flex group gap-3 items-center ${appTheme.sidebarHover} rounded-lg py-4 px-3 cursor-pointer touch-manipulation min-h-[60px] md:py-3 md:px-2 md:min-h-0`}
                   userClassName={`ring-primary ring-offset-base-100 group-hover:ring ring-offset-2`}
                 />
-                {conversation && conversation.unreadCount > 0 && (
+                {conversation && conversation.unreadCount > 0 && (!selectedUser || selectedUser._id !== userDetails._id) && (
                   <div className="absolute flex items-center justify-center min-w-[20px] h-5 px-1 rounded-full text-xs text-black bg-green-600 bottom-3 right-3">
                     {conversation.unreadCount > 99 ? '99+' : conversation.unreadCount}
                   </div>

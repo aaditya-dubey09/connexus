@@ -59,6 +59,18 @@ const MessageContainer = () => {
     navigate("/");
   }
 
+  // Listen for browser back/gesture (popstate) to deselect user and navigate to home
+  useEffect(() => {
+    const handlePopState = () => {
+      if (selectedUser) {
+        dispatch(setSelectedUser(null));
+        navigate("/");
+      }
+    };
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, [selectedUser, dispatch, navigate]);
+
   return (
     <>
       {!selectedUser ? (
