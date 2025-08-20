@@ -338,11 +338,11 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 👨‍💻 Author
 
-**Your Name**
+**Aaditya Dubey**
 
-- GitHub: [@yourusername](https://github.com/yourusername)
-- LinkedIn: [Your LinkedIn](https://linkedin.com/in/yourprofile)
-- Email: <your.email@example.com>
+- GitHub: [@aaditya-dubey09](https://github.com/aaditya-dubey09)
+- LinkedIn: [aadityadubey](https://linkedin.com/in/aadityadubey)
+- Email: [ad2340033@gmail.com](mailto:ad2340033@gmail.com)
 
 ---
 
